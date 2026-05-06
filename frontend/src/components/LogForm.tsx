@@ -16,6 +16,7 @@ interface LogResult {
   smart_score?: number;
   smart_label?: string;
   smart_advice?: string;
+  error?: string;
 }
 
 interface LogFormProps {
