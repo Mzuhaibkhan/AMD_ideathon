@@ -1,0 +1,392 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap");
+
+/* ============================================================
+   NUTRITRACK AI — Design System (Juno Watts Inspired)
+   ============================================================ */
+
+:root {
+  --base-100: #f9f4eb;
+  --base-200: #efece5;
+  --base-300: #0a0a0a;
+  --base-secondary-dark: #686560;
+  --base-secondary-fade: rgba(249, 244, 235, 0.15);
+  --accent-1: #b1c1ef;   /* periwinkle — nutrition/protein */
+  --accent-2: #f2acac;   /* coral — spending/fat */
+  --accent-3: #ffdd94;   /* gold — calories/smart score */
+  --accent-4: #a8e6cf;   /* mint — carbs/goals */
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --transition-base: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  font-family: "Host Grotesk", sans-serif;
+  background-color: var(--base-100);
+  color: var(--base-300);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  text-transform: uppercase;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.02rem;
+}
+
+h1 { font-size: 12rem; }
+h2 { font-size: 8rem; }
+h3 { font-size: 5rem; }
+h4 { font-size: 2.5rem; }
+
+p {
+  font-family: "Host Grotesk", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+p.md { font-size: 1.3rem; }
+p.lg { font-size: 1.5rem; }
+p.mono {
+  font-family: "DM Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+p.mono span {
+  position: relative;
+  top: -0.1rem;
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 2.75rem;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* ── Symbols ─────────────────────────────────────────────────── */
+.symbols-container {
+  display: flex;
+  gap: 0.5rem;
+  height: 1.1rem;
+  z-index: 1;
+}
+.symbols-container .symbol {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+}
+.symbol.sym-1 { background-color: var(--accent-1); }
+.symbol.sym-2 { background-color: var(--accent-2); }
+.symbol.sym-3 { background-color: var(--accent-3); }
+.symbol.sym-4 { background-color: var(--base-secondary-dark); }
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.card-accent-1 { background-color: var(--accent-1); }
+.card-accent-2 { background-color: var(--accent-2); }
+.card-accent-3 { background-color: var(--accent-3); }
+.card-accent-4 { background-color: var(--accent-4); }
+
+/* ── Flip Cards (Juno pattern) ───────────────────────────────── */
+.flip-card {
+  perspective: 1200px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  backface-visibility: hidden;
+  overflow: hidden;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: var(--base-300);
+  color: var(--base-100);
+}
+
+/* ── Section bars ────────────────────────────────────────────── */
+.section-top-bar,
+.section-bottom-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+.section-top-bar { top: 0; }
+.section-bottom-bar { bottom: 0; }
+.section-top-bar .container,
+.section-bottom-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--base-300);
+  color: var(--base-100);
+  border-radius: var(--radius-sm);
+  font-family: "DM Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+.btn-primary:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+}
+.btn-accent {
+  background-color: var(--accent-3);
+  color: var(--base-300);
+}
+.btn-accent:hover {
+  background-color: #f5d070;
+}
+
+/* ── Inputs ──────────────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background-color: var(--base-200);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: "Host Grotesk", sans-serif;
+  font-size: 1rem;
+  color: var(--base-300);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  outline: none;
+}
+.input-field:focus {
+  border-color: var(--accent-1);
+  background-color: #fff;
+}
+.input-field::placeholder {
+  color: var(--base-secondary-dark);
+  font-family: "DM Mono", monospace;
+  font-size: 0.82rem;
+}
+
+/* ── Tag pills ───────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-family: "DM Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.tag-1 { background-color: var(--accent-1); color: var(--base-300); }
+.tag-2 { background-color: var(--accent-2); color: var(--base-300); }
+.tag-3 { background-color: var(--accent-3); color: var(--base-300); }
+.tag-4 { background-color: var(--accent-4); color: var(--base-300); }
+.tag-dark { background-color: var(--base-secondary-fade); color: var(--base-100); }
+
+/* ── Floating animation ──────────────────────────────────────── */
+@keyframes floating {
+  0%   { transform: translate(-50%, -50%); }
+  50%  { transform: translate(-50%, -55%); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes floatingAlt {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ── Scramble text placeholder ───────────────────────────────── */
+.scramble-text { display: inline-block; }
+
+/* ── Reveal clip ─────────────────────────────────────────────── */
+.reveal-clip {
+  overflow: hidden;
+  display: inline-block;
+}
+.reveal-clip-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* ── Chart image containers ──────────────────────────────────── */
+.chart-container {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--base-300);
+  padding: 0;
+}
+.chart-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+/* ── Dashed border card ──────────────────────────────────────── */
+.dashed-card {
+  border: 1.5px dashed var(--base-secondary-dark);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.dashed-card-dark {
+  border: 1.5px dashed var(--base-secondary-fade);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+/* ── Stat number ─────────────────────────────────────────────── */
+.stat-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar-track {
+  width: 100%;
+  height: 4px;
+  background-color: var(--base-200);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Time range buttons ──────────────────────────────────────── */
+.time-range-group {
+  display: flex;
+  gap: 0.4rem;
+  background-color: var(--base-200);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+.time-range-btn {
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  font-family: "DM Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--base-secondary-dark);
+  transition: all var(--transition-fast);
+}
+.time-range-btn.active,
+.time-range-btn:hover {
+  background-color: var(--base-300);
+  color: var(--base-100);
+}
+
+/* ── Scrollable strips ───────────────────────────────────────── */
+.strips-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+.strip-row {
+  display: flex;
+  gap: 0.75rem;
+  will-change: transform;
+}
+
+/* ── Page transition overlay ─────────────────────────────────── */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background-color: var(--base-300);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+  h1 { font-size: 6rem; }
+  h2 { font-size: 5rem; }
+  h3 { font-size: 3rem; }
+  h4 { font-size: 2rem; }
+  p { font-size: 0.95rem; }
+  p.md { font-size: 1.1rem; }
+  p.lg { font-size: 1.25rem; }
+  p.mono { font-size: 0.78rem; }
+  .container { padding: 1.5rem; }
+  .stat-number { font-size: 3.5rem; }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 4rem; }
+  h3 { font-size: 2.25rem; }
+}
